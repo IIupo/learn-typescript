@@ -1,0 +1,39 @@
+.filter_btn {
+  width: 125px;
+  height: 45px; 
+  color: rgb(242, 242, 242);
+  background-color: rgb(30, 111, 159);
+  border: 1px solid rgb(30, 111, 159);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filter_btn_off {
+  width: 125px;
+  height: 45px;
+
+  color: rgb(242, 242, 242);
+  background-color: rgb(9, 34, 48);
+  border: 1px solid rgb(9, 34, 48);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filter_btn div {
+  gap:10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn_group {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+button {
+  cursor: pointer;
+}
+.btn_group_left {
+  display: flex;
+  gap: 10px;
+}

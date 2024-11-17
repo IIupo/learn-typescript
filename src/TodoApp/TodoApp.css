@@ -1,0 +1,73 @@
+.main_div {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(26, 26, 26);
+  width: 100vw;
+  background-image: linear-gradient(
+    rgb(13, 13, 13) 140px,
+    rgb(26, 26, 26) 140px
+  );
+  height: 100vh;
+  }
+  .notsomain_main_div {
+    display:grid;
+    justify-content: center;
+    /* height: 350px; */
+    gap: 15px;
+  }
+  .counter {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color:rgb(78, 168, 222);
+  }
+
+  h1 {
+    color: rgb(78, 168, 222) !important;
+    font-weight: 900 !important;
+    font-size: 40px !important;
+    text-align: center;
+    background-color: rgb(13, 13, 13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  h1::before {
+    content: "";
+    background-image: url("Logo.svg");
+    width: 22px;
+    height: 36px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+  
+  h1 span {
+    color: rgb(94, 96, 206);
+  }
+  
+  strong {
+  display:flex;
+  direction: row;  
+  gap: 5px;
+  }
+  button {
+    cursor: pointer;
+  }
+
+  .counter strong div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    background-color: rgb(51, 51, 51);
+    border-radius: 999px;
+    color: rgb(217, 217, 217);
+  }

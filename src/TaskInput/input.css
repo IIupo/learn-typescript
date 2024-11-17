@@ -1,0 +1,33 @@
+.input_main {
+  width: 603px;
+  height: 54px;
+  padding-left: 16px;
+  background-color: rgb(38, 38, 38);
+  color: rgb(128, 128, 128);
+  border: 1px solid rgb(13, 13, 13);
+  border-radius: 8px;
+}
+
+.add_task_btn {
+  width: 125px;
+  height: 45px;
+
+  color: rgb(242, 242, 242);
+  background-color: rgb(30, 111, 159);
+  border: 1px solid rgb(30, 111, 159);
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+.input_button {
+  display:flex;
+  gap:5px;
+  align-items: center;
+}
+.add_task_btn div {
+  display: flex;
+  justify-content: space-evenly;
+}
+button {
+  cursor: pointer;
+}
