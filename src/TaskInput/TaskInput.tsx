@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './input.css';
-import Add from './Add.svg';
+import Add from "./Add.svg?react";
 
 interface TaskInputProps {
   input: string;

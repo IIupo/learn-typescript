@@ -2,8 +2,8 @@ import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import './TaskItem.css';
-import Edit  from './Edit.svg';
-import Trash  from './Trash.svg';
+import Edit  from './Edit.svg?react';
+import Trash  from './Trash.svg?react';
 
 interface Task {
   id: number;

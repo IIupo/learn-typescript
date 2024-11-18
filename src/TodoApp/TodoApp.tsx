@@ -3,7 +3,7 @@ import { TaskInput } from '../TaskInput';
 import { TaskList } from '../TaskList';
 import { TaskFilters } from '../TaskFilters';
 import './TodoApp.css';
-import { createContext } from 'react';
+import { TaskContext } from '../TaskFilters/TaskFilters'
 
 interface Task {
   id: number;
@@ -27,12 +27,6 @@ interface TaskContextProps {
   setFilter: (filter: string) => void;
   deleteAllCompletedTasks: () => void;
 }
-
-export const TaskContext = createContext<TaskContextProps>({
-  filter: 'all',
-  setFilter: () => {},
-  deleteAllCompletedTasks: () => {},
-});
 
 class TodoApp extends React.Component<{}, TodoAppState> {
   constructor(props: {}) {

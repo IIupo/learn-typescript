@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './buttons.module.css';
-import { TaskContext } from '../TodoApp/TodoApp';
+import { createContext } from 'react';
 
 
 interface Button {
@@ -21,6 +21,11 @@ const buttons: Button[] = [
   { filter: 'completed', name: 'Выполненные' },
 ];
 
+export const TaskContext = createContext<ContextProps>({
+  filter: 'all',
+  setFilter: () => {},
+  deleteAllCompletedTasks: () => {},
+});
 class TaskFilters extends React.Component {
   static contextType = TaskContext;
   // context!: React.ContextType<typeof TaskContext>
@@ -44,8 +49,8 @@ handleDeleteAllCompletedTasks = () => {
     const { filter } = this.context as ContextProps;
 
     return (
-      <div className='styles.btn_group'>
-        <div className='btn_group_left'>
+      <div className={styles.btn_group}>
+        <div className={styles.btn_group_left}>
           {buttons.map((button) => (
             <button
               key={button.filter}
@@ -58,7 +63,7 @@ handleDeleteAllCompletedTasks = () => {
         </div>
         <div>
           {filter === 'completed' && (
-            <button className='filter_btn' onClick={this.handleDeleteAllCompletedTasks}>
+            <button className={styles.filter_btn} onClick={this.handleDeleteAllCompletedTasks}>
               <div>Очистить</div>
             </button>
           )}
