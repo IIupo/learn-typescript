@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './buttons.module.css';
-import { createContext } from 'react';
-
+import { TaskContext } from './context';
 
 interface Button {
   filter: string;
@@ -9,7 +8,7 @@ interface Button {
 }
 
 
-interface ContextProps {
+export interface ContextProps {
   filter: string;
   setFilter: (filter: string) => void;
   deleteAllCompletedTasks: () => void;
@@ -21,11 +20,6 @@ const buttons: Button[] = [
   { filter: 'completed', name: 'Выполненные' },
 ];
 
-export const TaskContext = createContext<ContextProps>({
-  filter: 'all',
-  setFilter: () => {},
-  deleteAllCompletedTasks: () => {},
-});
 class TaskFilters extends React.Component {
   static contextType = TaskContext;
   // context!: React.ContextType<typeof TaskContext>

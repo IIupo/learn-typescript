@@ -1,6 +1,6 @@
 import React from 'react';
 import { TaskItem } from '../TaskItem/TaskItem';
-import './TaskList.css';
+import './TaskList.module.css';
 
 interface Task {
   id: number;

@@ -2,8 +2,8 @@ import React from 'react';
 import { TaskInput } from '../TaskInput';
 import { TaskList } from '../TaskList';
 import { TaskFilters } from '../TaskFilters';
-import './TodoApp.css';
-import { TaskContext } from '../TaskFilters/TaskFilters'
+import styles from './TodoApp.module.css';
+import { TaskContext } from '../TaskFilters/context'
 
 interface Task {
   id: number;
@@ -146,8 +146,8 @@ class TodoApp extends React.Component<{}, TodoAppState> {
       });
 
     return (
-      <div className='main_div'>
-        <div className='notsomain_main_div'>
+      <div className={styles.main_div}>
+        <div className={styles.notsomain_main_div}>
           <h1>
             to<span>do</span>
           </h1>
@@ -160,7 +160,7 @@ class TodoApp extends React.Component<{}, TodoAppState> {
             <TaskContext.Provider value={{ filter, setFilter: this.setFilter, deleteAllCompletedTasks: this.deleteAllCompletedTasks }}>
             <TaskFilters />
             </TaskContext.Provider>
-          <div className='counter'>
+          <div className={styles.counter}>
             <strong>{'Всего задач: '}<div>{tasks.length}</div></strong>
             <strong>{'Завершено: '}<div>{tasks.filter(task => task.completed).length}{' из '}{tasks.length}</div></strong>
           </div>

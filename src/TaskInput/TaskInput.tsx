@@ -1,6 +1,6 @@
 
 import React from 'react';
-import './input.css';
+import styles from './input.module.css';
 import Add from "./Add.svg?react";
 
 interface TaskInputProps {
@@ -19,16 +19,16 @@ class TaskInput extends React.Component<TaskInputProps> {
   render() {
     const { input, handleChange, addTask } = this.props;
     return (
-      <div className='input_button'>
+      <div className={styles.input_button}>
         <input
-          className='input_main'
+          className={styles.input_main}
           type="text"
           value={input}
           onChange={handleChange}
           placeholder="Добавить новую задачу..."
           onKeyDown={this.handleAddTask}
         />
-        <button className='add_task_btn' onClick={addTask}>
+        <button className={styles.add_task_btn} onClick={addTask}>
           <div>Добавить<Add /></div>
         </button>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import './TaskItem.css';
+import styles from'./TaskItem.module.css';
 import Edit  from './Edit.svg?react';
 import Trash  from './Trash.svg?react';
 
@@ -64,11 +64,11 @@ class TaskItem extends React.Component<TaskItemProps> {
     return (
       <li
         key={task.id}
-        className='wholebody_taskitem'
+        className={styles.wholebody_taskitem}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div className='input_text_group'>
+        <div className={styles.input_text_group}>
           <input
             type="checkbox"
             checked={task.completed}
@@ -76,7 +76,7 @@ class TaskItem extends React.Component<TaskItemProps> {
           />
           {editingId === task.id ? (
             <input
-              className='input_taskitem_body'
+              className={styles.input_taskitem_body}
               type="text"
               value={editingText}
               onChange={this.handleOnChangeEvent}
@@ -87,26 +87,26 @@ class TaskItem extends React.Component<TaskItemProps> {
           ) : (
             <div>
               <div
-                className={!task.completed ? '' : 'line_through'}
+                className={!task.completed ? '' : styles.line_through}
                 onClick={this.handleEditTask}
               >
                 {task.text}
               </div>
               {hoveredTaskId === task.id && (
-                <div className='podskazka'>
+                <div className={styles.podskazka}>
                   {' '} Создана {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true, locale: ru, includeSeconds: true })}
                 </div>
               )}
             </div>
           )}
         </div>
-        <div className='buttons_group'>
+        <div className={styles.buttons_group}>
           {!task.completed && (
-            <button className={editingId === task.id ? 'edit_btnOn' : 'edit_btnOff'} onClick={this.handleEditTask}>
+            <button className={editingId === task.id ? styles.edit_btnOn : styles.edit_btnOff} onClick={this.handleEditTask}>
               <Edit />
             </button>
           )}
-          <button className='delete_btn' onClick={this.handleDeleteTask}>
+          <button className={styles.delete_btn} onClick={this.handleDeleteTask}>
             <Trash />
           </button>
         </div>
