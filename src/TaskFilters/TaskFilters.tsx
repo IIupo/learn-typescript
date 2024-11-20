@@ -33,10 +33,8 @@ class TaskFilters extends React.Component {
 };
 
 handleDeleteAllCompletedTasks = () => {
-    const context = this.context as ContextProps;
-    if (context) {
-        context.deleteAllCompletedTasks();
-    }
+  const context = this.context as ContextProps;
+  context.deleteAllCompletedTasks();
 };
 
   render() {
