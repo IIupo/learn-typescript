@@ -1,23 +1,18 @@
 import React from 'react';
 import styles from './buttons.module.css';
-import { TaskContext } from './context';
-
+import { TaskContext } from '../context and types/context';
+import { ContextProps } from '../context and types/context';
+import { Filter, FILTERS } from '../context and types/types';
+import cn from 'classnames';
 interface Button {
-  filter: string;
+  filter: Filter;
   name: string;
 }
 
-
-export interface ContextProps {
-  filter: string;
-  setFilter: (filter: string) => void;
-  deleteAllCompletedTasks: () => void;
-}
-
 const buttons: Button[] = [
-  { filter: 'all', name: 'Все задачи' },
-  { filter: 'active', name: 'В процессе' },
-  { filter: 'completed', name: 'Выполненные' },
+  { filter: FILTERS.ALL, name: 'Все задачи' },
+  { filter: FILTERS.ACTIVE, name: 'В процессе' },
+  { filter: FILTERS.COMPLETED, name: 'Выполненные' },
 ];
 
 class TaskFilters extends React.Component {
@@ -25,11 +20,9 @@ class TaskFilters extends React.Component {
   // context!: React.ContextType<typeof TaskContext>
 
 
-  handleSetFilter = (filter: string) => () => {
-    const context = this.context as ContextProps;
-    if (context) {
-        context.setFilter(filter);
-    }
+handleSetFilter = (filter: Filter) => () => {
+  const context = this.context as ContextProps;
+  context.setFilter(filter);
 };
 
 handleDeleteAllCompletedTasks = () => {
@@ -46,7 +39,12 @@ handleDeleteAllCompletedTasks = () => {
           {buttons.map((button) => (
             <button
               key={button.filter}
-              className={filter === button.filter ? styles.filter_btn : styles.filter_btn_off}
+              className={cn(
+                {
+                  [styles.filter_btn]:filter === button.filter,
+                  [styles.filter_btn_off]:filter !== button.filter
+                }
+              )}
               onClick={this.handleSetFilter(button.filter)}
             >
               <div>{button.name}</div>
@@ -54,11 +52,11 @@ handleDeleteAllCompletedTasks = () => {
           ))}
         </div>
         <div>
-          {filter === 'completed' && (
+          {FILTERS.COMPLETED === filter ? (
             <button className={styles.filter_btn} onClick={this.handleDeleteAllCompletedTasks}>
               <div>Очистить</div>
             </button>
-          )}
+          ) : null}
         </div>
       </div>
     );

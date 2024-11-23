@@ -1,14 +1,7 @@
 import React from 'react';
 import { TaskItem } from '../TaskItem/TaskItem';
 import './TaskList.module.css';
-
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-  createdAt: string;
-}
-
+import { Task } from 'context and types/types';
 interface TaskListProps {
   tasks: Task[];
   editingId: number | null;

@@ -3,38 +3,27 @@ import { TaskInput } from '../TaskInput';
 import { TaskList } from '../TaskList';
 import { TaskFilters } from '../TaskFilters';
 import styles from './TodoApp.module.css';
-import { TaskContext } from '../TaskFilters/context'
+import { TaskContext } from '../context and types/context'
+import { Filter, FILTERS, Task } from '../context and types/types'
 
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-  createdAt: string;
-  completedAt: string | null;
-}
 
 interface TodoAppState {
   tasks: Task[];
   input: string;
-  filter: string;
+  filter: Filter;
   editingId: number | null;
   editingText: string;
   hoveredTaskId: number | null;
 }
 
-interface TaskContextProps {
-  filter: string;
-  setFilter: (filter: string) => void;
-  deleteAllCompletedTasks: () => void;
-}
-
-class TodoApp extends React.Component<{}, TodoAppState> {
-  constructor(props: {}) {
+interface Props {}
+class TodoApp extends React.Component<Props, TodoAppState> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       tasks: this.getTasksFromLocalStorage(),
       input: '',
-      filter: 'all',
+      filter: FILTERS.ALL,
       editingId: null,
       editingText: '',
       hoveredTaskId: null,
@@ -84,7 +73,7 @@ class TodoApp extends React.Component<{}, TodoAppState> {
     this.setState((prevState) => {
       const updatedTasks = prevState.tasks.filter((task) => !task.completed);
       this.saveTasksToLocalStorage(updatedTasks);
-      this.setFilter('all');
+      this.setFilter(FILTERS.ALL);
       return { tasks: updatedTasks };
     });
   };
@@ -124,7 +113,7 @@ class TodoApp extends React.Component<{}, TodoAppState> {
     });
   };
 
-  setFilter = (filter: string) => {
+  setFilter = (filter: Filter) => {
     this.setState({ filter });
   };
 
@@ -133,8 +122,8 @@ class TodoApp extends React.Component<{}, TodoAppState> {
 
     const filteredTasks = tasks
       .filter((task) => {
-        if (filter === 'completed') return task.completed;
-        if (filter === 'active') return !task.completed;
+        if (filter === FILTERS.COMPLETED) return task.completed;
+        if (filter === FILTERS.ACTIVE) return !task.completed;
         return true; // 'all'
       })
       .sort((a, b) => {
@@ -158,7 +147,6 @@ class TodoApp extends React.Component<{}, TodoAppState> {
             handleChange={this.handleChange}
             addTask={this.addTask}
           />
-
             <TaskContext.Provider value={{ filter, setFilter: this.setFilter, deleteAllCompletedTasks: this.deleteAllCompletedTasks }}>
             <TaskFilters />
             </TaskContext.Provider>

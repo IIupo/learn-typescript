@@ -4,13 +4,9 @@ import { ru } from 'date-fns/locale';
 import styles from'./TaskItem.module.css';
 import Edit  from './Edit.svg?react';
 import Trash  from './Trash.svg?react';
+import { Task } from 'context and types/types';
+import cn from 'classnames'
 
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-  createdAt: string;
-}
 
 interface TaskItemProps {
   task: Task;
@@ -26,37 +22,45 @@ interface TaskItemProps {
 
 class TaskItem extends React.Component<TaskItemProps> {
   handleMouseEnter = () => {
-    this.props.setHoveredTaskId(this.props.task.id);
+    const { setHoveredTaskId, task } = this.props;
+    setHoveredTaskId(task.id);
   };
 
   handleMouseLeave = () => {
-    this.props.setHoveredTaskId(null);
+    const { setHoveredTaskId } = this.props;
+    setHoveredTaskId(null);
   };
 
   handleEditTask = () => {
-    this.props.editTask(this.props.task.id);
+    const { editTask, task } = this.props;
+    editTask(task.id);
   };
 
   handleDeleteTask = () => {
-    this.props.deleteTask(this.props.task.id);
+    const { deleteTask, task } = this.props;
+    deleteTask(task.id);
   };
 
   handleToggleCompletion = () => {
-    this.props.toggleCompletion(this.props.task.id);
+    const { toggleCompletion, task } = this.props;
+    toggleCompletion(task.id);
   };
 
   handleUpdateTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { updateTask, task } = this.props;
     if (e.key === 'Enter') {
-      this.props.updateTask(this.props.task.id);
+      updateTask(task.id);
     }
   };
 
   handleBlurEvent = () => {
-    this.props.updateTask(this.props.task.id);
+    const { updateTask, task } = this.props;
+    updateTask(task.id);
   };
 
   handleOnChangeEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.editTask(this.props.task.id, e.target.value);
+    const { editTask, task } = this.props;
+    editTask(task.id, e.target.value);
   };
 
   render() {
@@ -87,7 +91,10 @@ class TaskItem extends React.Component<TaskItemProps> {
           ) : (
             <div>
               <div
-                className={!task.completed ? '' : styles.line_through}
+                className={cn({
+                  [styles.line_through]: task.completed == true,
+                }  
+                )}
                 onClick={this.handleEditTask}
               >
                 {task.text}
@@ -102,7 +109,10 @@ class TaskItem extends React.Component<TaskItemProps> {
         </div>
         <div className={styles.buttons_group}>
           {!task.completed && (
-            <button className={editingId === task.id ? styles.edit_btnOn : styles.edit_btnOff} onClick={this.handleEditTask}>
+            <button className={cn({
+              [styles.edit_btnOn]:editingId === task.id,
+              [styles.edit_btnOff]:editingId !== task.id,
+            })} onClick={this.handleEditTask}>
               <Edit />
             </button>
           )}

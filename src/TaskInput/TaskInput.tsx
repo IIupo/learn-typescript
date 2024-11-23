@@ -11,8 +11,9 @@ interface TaskInputProps {
 
 class TaskInput extends React.Component<TaskInputProps> {
   handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const {addTask} = this.props;
     if (e.key === 'Enter') {
-      this.props.addTask();
+      addTask();
     }
   }
 

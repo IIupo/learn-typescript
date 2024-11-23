@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "learn-typescript": "file:",
     "react": "^18.3.1",
