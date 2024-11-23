@@ -138,6 +138,7 @@ class TodoApp extends React.Component<Props, TodoAppState> {
 
     return (
       <div className={styles.main_div}>
+      <TaskContext.Provider value={{ filter, setFilter: this.setFilter, deleteAllCompletedTasks: this.deleteAllCompletedTasks }}>
         <div className={styles.notsomain_main_div}>
           <h1>
             to<span>do</span>
@@ -147,9 +148,9 @@ class TodoApp extends React.Component<Props, TodoAppState> {
             handleChange={this.handleChange}
             addTask={this.addTask}
           />
-            <TaskContext.Provider value={{ filter, setFilter: this.setFilter, deleteAllCompletedTasks: this.deleteAllCompletedTasks }}>
+            
             <TaskFilters />
-            </TaskContext.Provider>
+            
           <div className={styles.counter}>
             <strong>{'Всего задач: '}<div>{tasks.length}</div></strong>
             <strong>{'Завершено: '}<div>{tasks.filter(task => task.completed).length}{' из '}{tasks.length}</div></strong>
@@ -166,6 +167,7 @@ class TodoApp extends React.Component<Props, TodoAppState> {
             setHoveredTaskId={(id) => this.setState({ hoveredTaskId: id })}
           />
         </div>
+        </TaskContext.Provider>
       </div>
     );
   }
